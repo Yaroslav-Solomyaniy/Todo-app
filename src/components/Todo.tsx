@@ -8,6 +8,7 @@ import TaskItem from './TaskItem';
 import DeleteTaskButton from './DeleteTaskButton';
 import TodoFilters from './TodoFilters';
 import EmptyList from './EmptyList';
+import InputTask from './InputTask';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -71,13 +72,7 @@ const Todo = () => {
       {showModal && (
       <div className="fixed w-full left-0 top-0 h-full bg-transparentBlack flex items-center justify-center">
         <div className="bg-white p-8 rounded-md md:w-[40%] sm:w-[70%] xs:w-[90%] ">
-          <input
-            type="text"
-            className="border p-2 rounded-md outline-none mb-8 w-full"
-            value={newTask}
-            placeholder={currentTodo?.task ? 'Update your task here' : 'Enter your task here'}
-            onChange={(e) => setNewTask(e.target.value)}
-          />
+          <InputTask newTask={newTask} currentTodo={currentTodo} setNewTask={setNewTask} />
           <div className="flex justify-between">
             {currentTodo?.task ? (
               <>
