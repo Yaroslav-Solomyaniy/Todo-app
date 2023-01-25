@@ -9,6 +9,7 @@ import DeleteTaskButton from './DeleteTaskButton';
 import TodoFilters from './TodoFilters';
 import EmptyList from './EmptyList';
 import InputTask from './InputTask';
+import ModalButtons from './ModalButtons';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ const Todo = () => {
       dispatch(addTodo({ task, id: Date.now(), completed: false }));
     }
     setNewTask('');
+    setCurrentTodo(null);
     setShowModal(true);
   };
 
@@ -51,6 +53,12 @@ const Todo = () => {
       dispatch(updateTodo({ task: changeTask, id, completed: false }));
     }
     setShowModal(false);
+    setCurrentTodo(null);
+    setNewTask('');
+  };
+
+  const stateReset = () => {
+    setShowModal(false); setCurrentTodo(null); setNewTask('');
   };
 
   const sortTodoList = todoState.todoList.filter((todo) => {
@@ -66,6 +74,7 @@ const Todo = () => {
 
     return false;
   });
+  const isTask = currentTodo?.task;
 
   return (
     <div>
@@ -74,47 +83,14 @@ const Todo = () => {
         <div className="bg-white p-8 rounded-md md:w-[40%] sm:w-[70%] xs:w-[90%] ">
           <InputTask newTask={newTask} currentTodo={currentTodo} setNewTask={setNewTask} />
           <div className="flex justify-between">
-            {currentTodo?.task ? (
-              <>
-                <button
-                  type="button"
-                  className="bg-sunsetOrange text-center text-white py-3 px-10 rounded-md"
-                  onClick={() => {
-                    setShowModal(false);
-                    handleUpdateTodoList(currentTodo?.id, newTask);
-                  }}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setShowModal(false); }}
-                  className="bg-Tangaroa rounded-md text-white py-3 px-10"
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  onClick={() => { setShowModal(false); }}
-                  className="bg-Tangaroa rounded-md text-white py-3 px-10"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleAddTodo(newTask);
-                    setShowModal(false);
-                  }}
-                  className="bg-sunsetOrange rounded-md text-white py-3 px-10"
-                >
-                  Add
-                </button>
-              </>
-            )}
+            <ModalButtons
+              textSubmit={isTask ? 'Save' : 'Add'}
+              setShowModal={setShowModal}
+              handleClick={isTask
+                ? () => handleUpdateTodoList(currentTodo?.id, newTask)
+                : () => { handleAddTodo(newTask); setShowModal(false); }}
+              cancelClick={stateReset}
+            />
           </div>
         </div>
       </div>
