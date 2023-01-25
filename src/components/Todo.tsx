@@ -6,6 +6,7 @@ import empty from '../assets/img/empty.jpg';
 import ButtonCreateTask from './ButtonCreateTask';
 import TaskItem from './TaskItem';
 import DeleteTaskButton from './DeleteTaskButton';
+import TodoFilters from './TodoFilters';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -40,10 +41,6 @@ const Todo = () => {
       dispatch(setTodoList(localTodoList));
     }
   }, []);
-
-  const handleSort = (criteria: string) => {
-    dispatch(sortTodo(criteria));
-  };
 
   const handleUpdateTodoList = (id: number, changeTask: string) => {
     if (changeTask.trim().length === 0) {
@@ -136,13 +133,7 @@ const Todo = () => {
           </div>
         ) : (
           <div className="container mx-auto mt-6  ">
-            <div className="flex justify-center mb-6 ">
-              <select className="p-1 outline-none" onChange={(e) => { handleSort(e.target.value); }}>
-                <option value="All" className="text-sm"> All</option>
-                <option value="Completed" className="text-sm">Completed</option>
-                <option value="Not Completed" className="text-sm">Not Completed</option>
-              </select>
-            </div>
+            <TodoFilters />
             <div>
               {sortTodoList.map((todo:ITask) => (
                 <div key={todo.id} className="flex items-center justify-between mb-6 bg-Tangaroa mx-auto w-full md:w-[75%] rounded-md p-4">
