@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { addTodo, ITask, setTodoList, sortTodo, toggleCompleted, updateTodo } from '../store/TodoSlice';
 import empty from '../assets/img/empty.jpg';
 import ButtonCreateTask from './ButtonCreateTask';
+import TaskItem from './TaskItem';
+import DeleteTaskButton from './DeleteTaskButton';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -42,12 +44,6 @@ const Todo = () => {
   const handleSort = (criteria: string) => {
     dispatch(sortTodo(criteria));
   };
-  const handleDeleteTodo = (id: number) => {
-    const updatedTodoList = todoState.todoList.filter((todo) => todo.id !== id);
-
-    dispatch(setTodoList(updatedTodoList));
-    localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
-  };
 
   const handleUpdateTodoList = (id: number, changeTask: string) => {
     if (changeTask.trim().length === 0) {
@@ -71,10 +67,6 @@ const Todo = () => {
 
     return false;
   });
-
-  const handleToggleCompleted = (task: ITask) => {
-    dispatch(toggleCompleted(task));
-  };
 
   return (
     <div>
@@ -154,14 +146,7 @@ const Todo = () => {
             <div>
               {sortTodoList.map((todo:ITask) => (
                 <div key={todo.id} className="flex items-center justify-between mb-6 bg-Tangaroa mx-auto w-full md:w-[75%] rounded-md p-4">
-                  <div
-                    onClick={() => {
-                      handleToggleCompleted(todo);
-                    }}
-                    className={`${todo.completed ? 'line-through text-greenTeal' : 'text-sunsetOrange'}`}
-                  >
-                    {todo.task}
-                  </div>
+                  <TaskItem task={todo} />
                   <div>
                     <button
                       type="button"
@@ -174,13 +159,7 @@ const Todo = () => {
                     >
                       <TiPencil />
                     </button>
-                    <button
-                      onClick={() => handleDeleteTodo(todo.id)}
-                      type="button"
-                      className="bg-sunsetOrange text-white p-1 rounded-md ml-2"
-                    >
-                      <BsTrash />
-                    </button>
+                    <DeleteTaskButton task={todo} />
                   </div>
                 </div>
               ))}
