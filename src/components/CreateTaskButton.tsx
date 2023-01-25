@@ -4,7 +4,7 @@ interface IButtonCreateTask {
   setShowModal: (value: boolean) => void;
 }
 
-const ButtonCreateTask:FC<IButtonCreateTask> = ({ setShowModal }) => (
+const CreateTaskButton:FC<IButtonCreateTask> = ({ setShowModal }) => (
   <button
     type="button"
     onClick={() => setShowModal(true)}
@@ -14,4 +14,4 @@ const ButtonCreateTask:FC<IButtonCreateTask> = ({ setShowModal }) => (
   </button>
 );
 
-export default ButtonCreateTask;
+export default CreateTaskButton;

@@ -3,7 +3,7 @@ import { BsTrash, TiPencil } from 'react-icons/all';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { addTodo, ITask, setTodoList, sortTodo, toggleCompleted, updateTodo } from '../store/TodoSlice';
 import empty from '../assets/img/empty.jpg';
-import ButtonCreateTask from './ButtonCreateTask';
+import CreateTaskButton from './CreateTaskButton';
 import TaskItem from './TaskItem';
 import DeleteTaskButton from './DeleteTaskButton';
 import TodoFilters from './TodoFilters';
@@ -11,6 +11,7 @@ import EmptyList from './EmptyList';
 import InputTask from './InputTask';
 import ModalButtons from './ModalButtons';
 import ModalWindow from './ModalWindow';
+import EditTaskButton from './EditTaskButton';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -70,24 +71,14 @@ const Todo = () => {
               <div key={todo.id} className="flex items-center justify-between mb-6 bg-Tangaroa mx-auto w-full md:w-[75%] rounded-md p-4">
                 <TaskItem task={todo} />
                 <div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowModal(true);
-                      setCurrentTodo(todo);
-                      setNewTask(todo.task);
-                    }}
-                    className="bg-blue-500 text-white p-1 rounded-md ml-2"
-                  >
-                    <TiPencil />
-                  </button>
+                  <EditTaskButton task={todo} setShowModal={setShowModal} setCurrentTodo={setCurrentTodo} setNewTask={setNewTask} />
                   <DeleteTaskButton task={todo} />
                 </div>
               </div>
             ))}
           </div>
         )}
-        <ButtonCreateTask setShowModal={setShowModal} />
+        <CreateTaskButton setShowModal={setShowModal} />
       </div>
     </div>
   );
