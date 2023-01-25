@@ -3,8 +3,9 @@ import { BsTrash, TiPencil } from 'react-icons/all';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { addTodo, ITask, setTodoList, sortTodo, toggleCompleted, updateTodo } from '../store/TodoSlice';
 import empty from '../assets/img/empty.jpg';
+import ButtonCreateTask from './ButtonCreateTask';
 
-const TodoList = () => {
+const Todo = () => {
   const dispatch = useAppDispatch();
   const todoState = useAppSelector((state) => state.todo);
 
@@ -186,16 +187,10 @@ const TodoList = () => {
             </div>
           </div>
         )}
-        <button
-          type="button"
-          onClick={() => setShowModal(true)}
-          className="bg-sunsetOrange text-center text-white py-3 px-10 rounded-md"
-        >
-          Add Task
-        </button>
+        <ButtonCreateTask setShowModal={setShowModal} />
       </div>
     </div>
   );
 };
 
-export default TodoList;
+export default Todo;

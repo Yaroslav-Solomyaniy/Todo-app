@@ -1,10 +1,10 @@
 import Heading from './components/Heading';
-import TodoList from './components/TodoList';
+import Todo from './components/Todo';
 
 const App = () => (
   <div className="font-Poppins container py-16 px-6 min-h-screen mx-auto">
     <Heading />
-    <TodoList />
+    <Todo />
   </div>
 );
 
