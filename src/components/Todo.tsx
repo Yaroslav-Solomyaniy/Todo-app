@@ -7,6 +7,7 @@ import ButtonCreateTask from './ButtonCreateTask';
 import TaskItem from './TaskItem';
 import DeleteTaskButton from './DeleteTaskButton';
 import TodoFilters from './TodoFilters';
+import EmptyList from './EmptyList';
 
 const Todo = () => {
   const dispatch = useAppDispatch();
@@ -125,36 +126,29 @@ const Todo = () => {
       )}
       <div className="flex items-center justify-center flex-col">
         {todoState.todoList.length === 0 ? (
-          <div className="mb-6">
-            <div className="sm:w-[500px] sm:h-[500px] min-w-[250px]">
-              <img src={empty} alt="img" />
-            </div>
-            <p className="text-center text-Gray ">You have not todos, please add one</p>
-          </div>
+          <EmptyList />
         ) : (
           <div className="container mx-auto mt-6  ">
             <TodoFilters />
-            <div>
-              {sortTodoList.map((todo:ITask) => (
-                <div key={todo.id} className="flex items-center justify-between mb-6 bg-Tangaroa mx-auto w-full md:w-[75%] rounded-md p-4">
-                  <TaskItem task={todo} />
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setShowModal(true);
-                        setCurrentTodo(todo);
-                        setNewTask(todo.task);
-                      }}
-                      className="bg-blue-500 text-white p-1 rounded-md ml-2"
-                    >
-                      <TiPencil />
-                    </button>
-                    <DeleteTaskButton task={todo} />
-                  </div>
+            {sortTodoList.map((todo:ITask) => (
+              <div key={todo.id} className="flex items-center justify-between mb-6 bg-Tangaroa mx-auto w-full md:w-[75%] rounded-md p-4">
+                <TaskItem task={todo} />
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowModal(true);
+                      setCurrentTodo(todo);
+                      setNewTask(todo.task);
+                    }}
+                    className="bg-blue-500 text-white p-1 rounded-md ml-2"
+                  >
+                    <TiPencil />
+                  </button>
+                  <DeleteTaskButton task={todo} />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         )}
         <ButtonCreateTask setShowModal={setShowModal} />
