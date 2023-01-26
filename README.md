@@ -10,14 +10,13 @@
 <h3>📎 You can see the application in the picture👇👇👇</h3>
 
 <hr/>
-<div style="display: flex">
-<img  src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/1.png"/>
-<img   src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/2.png"/>
-<img width="47%" src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/3.png"/>
-<img  width="47%"  src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/4.png"/>
+<div>
+<img width="47%" src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/1.png"/>
+<img  width="47%"  src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/2.png"/>
 </div>
 <div>
-
+<img width="47%" src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/3.png"/>
+<img  width="47%"  src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/4.png"/>
 </div>
 <div>
 <img width="47%" src="https://github.com/Yaroslav-Solomyaniy/Todo-app/blob/master/public/preview/5.png"/>
